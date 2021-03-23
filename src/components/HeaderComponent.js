@@ -29,8 +29,7 @@ class Header extends Component {
                         <div className="row">
                             <div className="col">
                                 <NavLink className="nav-link" to="/home">
-                                <h1>Teena</h1>
-                                <h3>by Hilda Terry</h3>
+                                <h1>Storefront</h1>
                                 </NavLink>
                             </div>
                         </div>
@@ -41,13 +40,13 @@ class Header extends Component {
                     <Collapse isOpen={this.state.isNavOpen} navbar>
                         <Nav navbar>
                             <NavItem>
-                                <NavLink className="nav-link" to="/characters">
-                                    <i className="fa fa-list fa-lg" /> Characters
+                                <NavLink className="nav-link" to="/apparel">
+                                    Apparel
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink className="nav-link" to="/archive">
-                                    <i className="fa fa-info fa-lg" /> Archive
+                                <NavLink className="nav-link" to="/media">
+                                    Media
                                 </NavLink>
                             </NavItem>
                         </Nav>
