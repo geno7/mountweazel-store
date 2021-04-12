@@ -1,0 +1,61 @@
+//imports
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "./node_modules/bootstrap/scss/mixins";
+
+//colors
+$pal-white: #ffffff;
+$pal-black: #000;
+$pal-colorA: #006BA6;
+$pal-colorB: #0496ff;
+$pal-colorC: #FFBC42;
+$pal-colorD: #D81159;
+$pal-colorE: #8F2D56;
+
+
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1, h2, h3, .card-body>.card-title {
+  font-family:  "Lobster", cursive;
+}
+.card-title {
+  font-weight: 500; 
+  font-size: 1.25rem;
+}
+
+h2 {
+  color: $pal-white;
+}
+
+.card-img-overlay .card-title {
+  color: $pal-white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.row-content {
+    padding: 50px 0;
+    border-bottom: 1px ridge;
+    min-height: 200px;
+}
+
+.site-footer {
+    background-image: linear-gradient(#CEC8FF, $pal-white);
+    padding: 20px 0;
+}
+
+.jumbotron {
+    margin: 0;
+    padding: 30px;
+    background-image: $pal-colorB;
+    color: $pal-white;
+}
+
+.jumbotron h2 {
+    color: $pal-white;
+}
+
+.navbar-dark {
+    background-color: $pal-colorD;
+}

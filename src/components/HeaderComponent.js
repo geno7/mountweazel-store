@@ -26,34 +26,45 @@ class Header extends Component {
         return (
             <React.Fragment>
                     <div className="container-fluid">
-                        <div className="row">
-                            <div className="col">
-                                <NavLink className="nav-link" to="/home">
-                                <h1>Storefront</h1>
-                                </NavLink>
+                            <div className="row">
+                                <div className="col text-center">
+                                    <NavLink className="nav-link" to="/home">
+                                    <h1>Storefront</h1>
+                                    </NavLink>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <Navbar dark sticky="top" expand="md">
-                    <div className="container">
-                    <NavbarToggler onClick={this.toggleNav} />
-                    <Collapse isOpen={this.state.isNavOpen} navbar>
-                        <Nav navbar>
-                            <NavItem>
-                                <NavLink className="nav-link" to="/apparel">
-                                    Apparel
-                                </NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink className="nav-link" to="/media">
-                                    Media
-                                </NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                    </div>
-                </Navbar>
-            </React.Fragment>
+                    <Navbar dark sticky="top" expand="md">
+                        <div className="container">
+                        <NavbarToggler onClick={this.toggleNav} />
+                        <Collapse isOpen={this.state.isNavOpen} navbar>
+                            <Nav navbar>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/home">
+                                        Featured
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/apparel">
+                                        Apparel
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/posters">
+                                        Posters
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/music">
+                                        Music
+                                    </NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                        </div>
+                    </Navbar>
+                </React.Fragment>
+                
         );
     }
 }

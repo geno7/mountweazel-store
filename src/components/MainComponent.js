@@ -2,35 +2,49 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import { APPAREL } from '../shared/data_apparel';
 import ProductCards from './ProductCardsComponent';
-import Media from './MediaComponent';
+import DisplayProduct from './DisplayProductComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
-import { POSTERS } from '../shared/data_posters';
 
+// import products data
+import { PRODUCTS } from '../shared/products'
 
+// class component extending from parent "Component" class
 class Main extends Component {
         constructor(props) {
         super(props);
         this.state = {
-            products: APPAREL,
-            products2: POSTERS
+            products: PRODUCTS
         };
     }
 
     render() {
 
+        const ProductWithId = ({match}) => {
+            return (
+                <DisplayProduct
+                    // problem - its filtering the state of the current component, when it should filter state from whatever ProductCards product is currently onscreen
+                    product={this.state.products.filter(product => product.id === +match.params.productId)[0]}
+                />
+            );
+        }; 
+
         return(
             <>
             <Header />
-            <ProductCards products={this.state.products} />
-            <ProductCards products={this.state.products2} />
-            {/* <Switch>
+            <Switch>
+                {/* route nav paths */}
                 <Route path='/home' component={Home} />
-                <Route exact path='/apparel' component={Apparel} />
-                <Route exact path='/media' component={Media} />
+                <Route exact path='/apparel' render={() => <ProductCards products={this.state.products.filter(product => product.category === "apparel")} />} />
+                <Route exact path='/posters' render={() => <ProductCards products={this.state.products.filter(product => product.category === "posters")} /> } />
+                <Route exact path='/music' render={() => <ProductCards products={this.state.products.filter(product => product.category === "music")} /> } />
+
+                {/* route path for individual product pages */}
+                <Route path='/products/:productId' component={ProductWithId} />
+
+                {/* else redirect to home page */}
                 <Redirect to='/home'></Redirect>
-            </Switch> */}
+            </Switch>
             <Footer />
             </>
         );
