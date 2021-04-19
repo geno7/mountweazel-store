@@ -6,6 +6,7 @@ import ProductCards from './ProductCardsComponent';
 import DisplayProduct from './DisplayProductComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { actions } from 'react-redux-form';
 
 const mapStateToProps = state => {
     return {

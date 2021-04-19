@@ -19,14 +19,11 @@ body {
 
 h1, h2, h3, .card-body>.card-title {
   font-family:  "Lobster", cursive;
+  color: $pal-black
 }
 .card-title {
   font-weight: 500; 
   font-size: 1.25rem;
-}
-
-h2 {
-  color: $pal-white;
 }
 
 .card-img-overlay .card-title {

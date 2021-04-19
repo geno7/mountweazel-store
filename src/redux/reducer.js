@@ -1,6 +1,6 @@
 import { PRODUCTS } from '../shared/products'
 
-const initialState = {
+export const initialState = {
     products: PRODUCTS
 }
 
