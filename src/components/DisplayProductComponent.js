@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardTitle, CardBody, 
     Breadcrumb, BreadcrumbItem,
-    Form, Modal, ModalHeader, ModalBody, Button, Input, Label,
+    Form, FormFeedback, Button, Input, Label,
     Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, Errors } from 'react-redux-form';
@@ -27,7 +27,8 @@ class PurchaseForm extends Component {
             }
         };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this) //handles changing input values
+        this.handleSubmit = this.handleSubmit.bind(this); //handles submitting form
     }
 
     handleSubmit(values) {
@@ -35,22 +36,69 @@ class PurchaseForm extends Component {
         this.props.postFeedback(values);
     }
 
+    handleInputChange(event) {
+        //change the state when values in the form are changed
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    //validate form submissions, handle error messages
+    validate(quantitySelect, sizeSelect) {
+        const errors = {
+            quantitySelect: '',
+            sizeSelect: '',
+        }
+
+        if (this.state.touched.quantitySelect) {
+            if (quantitySelect < 1) {
+                errors.quantitySelect = 'Quantity must be greater than or equal to 1.'
+            }
+        }
+
+        return errors
+    }
+
+    //test whether a field is in focus or not
+    handleBlur = (field) => () => {
+        this.setState({
+            touched: {...this.state.touched, [field]: true}
+        })
+    }
+
     render() {
+
+        const errors = this.validate(this.state.quantitySelect,this.state.sizeSelect)
+
         return (
             <Form onSubmit={values => this.handleSubmit(values)}>
                 <Row className="form-group">
                     <Label htmlFor="sizeSelect">Size</Label>
-                        <Input type="select" name="sizeSelect" id="sizeSelect">
+                        <Input type="select" name="sizeSelect" id="sizeSelect" 
+                            value={this.state.sizeSelect} 
+                            onChange={this.handleInputChange}>
                             <option>Small</option>
                             <option>Medium</option>
                             <option>Large</option>
                             <option>XL</option>
                             <option>XXL</option>
                         </Input>
+                        <FormFeedback>{errors.sizeSelect}</FormFeedback>
                 </Row>
                 <Row className="form-group">
                     <Label htmlFor="quantitySelect">Quantity</Label>
-                        <Input name="quantitySelect" id="quantitySelect" type="text" pattern="[0-9]*" value="1"></Input>
+                        <Input name="quantitySelect" id="quantitySelect" 
+                            type="number" 
+                            min="1" 
+                            value={this.state.quantitySelect} 
+                            invalid={errors.quantitySelect}
+                            onBlur={this.handleBlur("quantitySelect")}
+                            onChange={this.handleInputChange}/>
+                        <FormFeedback>{errors.quantitySelect}</FormFeedback>
                 </Row>
                 <Row className="form-group">
                     <Button>ADD TO CART</Button>
@@ -70,6 +118,7 @@ function RenderProduct({product}) {
                     </div>
                     <div className="col-md-12 col-lg-6">
                             <h2>{product.name}</h2>
+                            <h3>${product.price}</h3>
                             <PurchaseForm />
                             <div>{product.description}</div>
                     </div>
