@@ -17,6 +17,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.p {
+  color: $pal-black
+}
+
 h1, h2, h3, .card-body>.card-title {
   font-family:  "Lobster", cursive;
   color: $pal-black

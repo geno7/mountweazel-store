@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-export const cart = (state = [], action) => {
+export const Cart = (state = [], action) => {
     switch (action.type) {
         case ActionTypes.ADD_TO_CART:
             if (state.includes(action.payload)) {
@@ -13,5 +13,5 @@ export const cart = (state = [], action) => {
 
         default:
             return state;
-
+        }
     }
