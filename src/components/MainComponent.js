@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchProducts: () => fetchProducts(),
+  resetApparelForm: () => actions.reset("apparelForm"),
 };
 
 // class component extending from parent "Component" class
@@ -35,6 +36,7 @@ class Main extends Component {
               (product) => product.id === +match.params.productId
             )[0]
           }
+          resetApparelForm={this.props.resetApparelForm}
           // server stuff
           isLoading={this.props.products.isLoading}
           errMess={this.props.products.errMess}

@@ -14,7 +14,7 @@ $pal-colorE: #8F2D56;
 
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .p {
@@ -22,7 +22,7 @@ body {
 }
 
 h1, h2, h3, .card-body>.card-title {
-  font-family:  "Lobster", cursive;
+  font-family: 'Josefin Sans', sans-serif;
   color: $pal-black
 }
 .card-title {
@@ -46,6 +46,11 @@ h1, h2, h3, .card-body>.card-title {
     padding: 20px 0;
 }
 
+.center-navbar {
+  width:30%;
+  margin-left: 35%;
+}
+
 .jumbotron {
     margin: 0;
     padding: 30px;
@@ -57,6 +62,7 @@ h1, h2, h3, .card-body>.card-title {
     color: $pal-white;
 }
 
+//navbar
 .navbar-dark {
-    background-color: $pal-colorD;
+    background-color: $pal-colorA;
 }

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import {
-  Card,
-  CardImg,
-  CardText,
-  CardTitle,
-  CardBody,
   Breadcrumb,
   BreadcrumbItem,
   FormFeedback,
@@ -17,6 +12,22 @@ import {
 import { Link } from "react-router-dom";
 import { Control, Form, Errors } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
+import { connect } from "react-redux";
+import { actions } from "react-redux-form";
+import { withRouter } from "react-router-dom";
+import { fetchProducts } from "../redux/ActionCreators";
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+    cart: state.cart,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchProducts: () => fetchProducts(),
+  resetApparelForm: () => actions.reset("apparelForm"),
+};
 
 //variables used to check forms for errors
 const required = (val) => val && val.length;
@@ -43,8 +54,10 @@ class PurchaseForm extends Component {
   }
 
   handleSubmit(values) {
-    this.props.resetFeedbackForm();
-    this.props.postFeedback(values);
+    console.log("Current state is: " + JSON.stringify(this.state));
+    console.log("Current values is: " + JSON.stringify(values));
+    alert("Current State is: " + JSON.stringify(this.state));
+    this.props.resetApparelForm();
   }
 
   handleInputChange(event) {
@@ -55,7 +68,8 @@ class PurchaseForm extends Component {
 
     this.setState({
       [name]: value,
-    });
+    }, 
+      () => console.log(this.state))
   }
 
   //validate form submissions, handle error messages
@@ -88,7 +102,10 @@ class PurchaseForm extends Component {
     );
 
     return (
-      <Form model="" onSubmit={(values) => this.handleSubmit(values)}>
+      <Form
+        model="apparelForm"
+        onSubmit={(values) => this.handleSubmit(values)}
+      >
         <Row className="form-group">
           <Label htmlFor="sizeSelect">Size</Label>
           <Input
@@ -128,6 +145,11 @@ class PurchaseForm extends Component {
   }
 }
 
+const PurchaseFormConnected = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PurchaseForm);
+
 function RenderProduct({ product }) {
   return (
     <div className="container">
@@ -138,7 +160,7 @@ function RenderProduct({ product }) {
         <div className="col-md-12 col-lg-6">
           <h2>{product.name}</h2>
           <h3>${product.price}</h3>
-          <PurchaseForm />
+          <PurchaseFormConnected />
           <div>{product.description}</div>
         </div>
       </div>
@@ -193,4 +215,6 @@ function DisplayProduct(props) {
   return <div />;
 }
 
-export default DisplayProduct;
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DisplayProduct)
+);

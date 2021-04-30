@@ -6,15 +6,11 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  Jumbotron,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Input,
-  Label,
+  Card,
+  CardImg,
+  CardText,
+  CardTitle,
+  CardBody,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
@@ -47,11 +43,11 @@ class Header extends Component {
             </div>
           </div>
         </div>
-        <Navbar dark sticky="top" expand="md">
+        <Navbar dark expand="md">
           <div className="container">
             <NavbarToggler onClick={this.toggleNav} />
             <Collapse isOpen={this.state.isNavOpen} navbar>
-              <Nav navbar>
+              <Nav navbar className="center-navbar">
                 <NavItem>
                   <NavLink className="nav-link" to="/home">
                     Featured

@@ -43,12 +43,12 @@ function ProductCards(props) {
     <div className="container">
       <div className="row">
         <div className="col">
-          <Breadcrumb>
+          {/* <Breadcrumb>
             <BreadcrumbItem>
               <Link to="/home"></Link>
             </BreadcrumbItem>
             <BreadcrumbItem active>Product</BreadcrumbItem>
-          </Breadcrumb>
+          </Breadcrumb> */}
           <hr />
         </div>
       </div>
