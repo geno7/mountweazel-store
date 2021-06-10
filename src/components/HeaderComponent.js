@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Card, CardImg, CardText, CardTitle, CardBody } from "reactstrap";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux"
+import { findRenderedComponentWithType } from "react-dom/test-utils";
+
+const mapStateToProps = (state) => {
+    return {
+        products: state.products,
+        cart: state.cart,
+    };
+};
 
 class Header extends Component {
     constructor(props) {
@@ -20,6 +29,7 @@ class Header extends Component {
     }
 
     render() {
+        const cartTotal = this.state.cart && this.state.cart.length > 0 ? "filled" : "empty"
         return (
             <React.Fragment>
                 <div className="container-fluid">
@@ -35,7 +45,10 @@ class Header extends Component {
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavLink className="nav-link" to="/cart">
-                            <i className="fa fa-shopping-cart fa-lg" />
+                            <span class="text-white">
+                                <i className="fa fa-shopping-cart fa-lg" />
+                                {cartTotal}
+                            </span>
                         </NavLink>
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="center-navbar">
@@ -68,4 +81,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default connect(mapStateToProps)(Header);
