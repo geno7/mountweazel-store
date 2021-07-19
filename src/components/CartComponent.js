@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Table, Button } from "reactstrap";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
-import { removeFromCart } from "../redux/ActionCreators";
+import { removeFromCart, postToCart } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
     return {
@@ -13,18 +13,29 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    removeFromCart: (campsiteId) => removeFromCart(campsiteId),
+    removeFromCart: (productId) => removeFromCart(productId),
+    postToCart: (productId, quantitySelect, sizeSelect) => postToCart(productId, quantitySelect, sizeSelect),
 };
 
 //render individual cart items
-function RenderCartItem({ product }) {
+function RenderCartItem({ product, cart, removeFromCart, postToCart }) {
+    const cartProduct = cart.find(({ id }) => id === product.id); //get id of object in cart array that represents current object
     return (
         <tr>
             <th>
                 <img src={product.image} alt={product.name} height="100" />
             </th>
-            <th>{product.name}</th>
-            <th>{product.price}</th>
+            <th>
+                {product.name} ({cartProduct.size})
+            </th>
+            <th>x{cartProduct.quantity.toString()}</th>
+            <th>
+                <Button onClick={() => removeFromCart(product.id)}>-</Button>
+            </th>
+            <th>
+                <Button onClick={() => postToCart(product.id, 1, cartProduct.size)}>+</Button>
+            </th>
+            <th>{(product.price * cartProduct.quantity).toFixed(2)}</th>
         </tr>
     );
 }
@@ -36,16 +47,19 @@ class Cart extends Component {
         super(props);
     }
 
+    handleAddItem() {
+        
+    }
+
     render() {
         //take products array and make a new array from it with only the products that match the cart array 
-        const cartData = this.props.products.products.filter((product) => this.props.cart.includes(product.id))
+        const cartData = this.props.products.products.filter((product) => this.props.cart.find( ({id}) => id === product.id))
 
         //display the cartData as individual items
         const directory = cartData.map((product) => {
             return (
                 <div key={product.id} className="col-md-5 m-1">
-                    <RenderCartItem product={product} />
-                    <Button onClick={() => this.props.removeFromCart(product.id)}>REMOVE</Button>
+                    <RenderCartItem product={product} removeFromCart={this.props.removeFromCart} postToCart={this.props.postToCart} cart={this.props.cart} />
                 </div>
             );
         });

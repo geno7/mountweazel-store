@@ -29,7 +29,7 @@ class Header extends Component {
     }
 
     render() {
-        const cartTotal = this.state.cart && this.state.cart.length > 0 ? "filled" : "empty"
+        let cartTotal = this.props.cart.length
         return (
             <React.Fragment>
                 <div className="container-fluid">
@@ -46,8 +46,8 @@ class Header extends Component {
                         <NavbarToggler onClick={this.toggleNav} />
                         <NavLink className="nav-link" to="/cart">
                             <span class="text-white">
-                                <i className="fa fa-shopping-cart fa-lg" />
-                                {cartTotal}
+                                <i className="fa fa-shopping-cart fa-lg" /> 
+                                ({cartTotal})
                             </span>
                         </NavLink>
                         <Collapse isOpen={this.state.isNavOpen} navbar>

@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     fetchProducts: () => fetchProducts(),
     resetApparelForm: () => actions.reset("apparelForm"),
-    postToCart: (productId) => postToCart(productId),
+    postToCart: (productId,quantitySelect,sizeSelect) => postToCart(productId,quantitySelect,sizeSelect),
 };
 
 //specific parameter selectors for the product and "ADD TO CART" button
@@ -54,7 +54,12 @@ class PurchaseForm extends Component {
         console.log("Current state is: " + JSON.stringify(this.state));
         console.log("Current values is: " + JSON.stringify(values));
         alert("Current State is: " + JSON.stringify(this.state));
-        this.props.postToCart(this.props.productId);
+        console.log("sizeSelect: " + this.state.sizeSelect)
+        console.log("quantitySelect: " + this.state.quantitySelect);
+        this.props.postToCart(
+            this.props.productId,
+            this.state.quantitySelect,
+            this.state.sizeSelect);
         this.props.resetApparelForm();
     }
 

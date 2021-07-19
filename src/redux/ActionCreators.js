@@ -41,16 +41,23 @@ export const addProducts = (products) => ({
     payload: products,
 });
 
-export const postToCart = (productId) => (dispatch) => {
+export const addToCart = product => ({
+    type: ActionTypes.ADD_TO_CART,
+    payload: product,
+});
+
+export const postToCart = (id,quantity,size) => (dispatch) => {
+
+    const newItem = {
+        id,
+        quantity,
+        size
+    };
+    
     setTimeout(() => {
-        dispatch(addToCart(productId));
+        dispatch(addToCart(newItem));
     }, 2000);
 };
-
-export const addToCart = (productId) => ({
-    type: ActionTypes.ADD_TO_CART,
-    payload: productId,
-});
 
 export const removeFromCart = (productId) => ({
     type: ActionTypes.REMOVE_FROM_CART,
