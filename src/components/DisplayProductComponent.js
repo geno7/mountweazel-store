@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     fetchProducts: () => fetchProducts(),
     resetApparelForm: () => actions.reset("apparelForm"),
-    postToCart: (productId,quantitySelect,sizeSelect) => postToCart(productId,quantitySelect,sizeSelect),
+    postToCart: (itemData,quantitySelect,sizeSelect) => postToCart(itemData,quantitySelect,sizeSelect),
 };
 
 //specific parameter selectors for the product and "ADD TO CART" button
@@ -37,7 +37,7 @@ class PurchaseForm extends Component {
 
         this.state = {
             sizeSelect: "Small",
-            quantitySelect: "1",
+            quantitySelect: 1,
             touched: {
                 sizeSelect: false,
                 quantitySelect: false,
@@ -57,7 +57,7 @@ class PurchaseForm extends Component {
         console.log("sizeSelect: " + this.state.sizeSelect)
         console.log("quantitySelect: " + this.state.quantitySelect);
         this.props.postToCart(
-            this.props.productId,
+            this.props.itemData,
             this.state.quantitySelect,
             this.state.sizeSelect);
         this.props.resetApparelForm();
@@ -185,7 +185,7 @@ function RenderProduct({ product }) {
                     <h3>${product.price}</h3>
                     <PurchaseFormConnected
                         showSize={product.category === "apparel"}
-                        productId={product.id}
+                        itemData={product}
                     />
                     <div>{product.description}</div>
                 </div>

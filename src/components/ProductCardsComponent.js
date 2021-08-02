@@ -17,6 +17,7 @@ function RenderProductCard({ product }) {
         <CardImg width="100%" src={product.image} alt={product.name} />
         <CardImgOverlay>
           <CardTitle>{product.name}</CardTitle>
+          <CardTitle>{product.price}</CardTitle>
         </CardImgOverlay>
       </Link>
     </Card>
