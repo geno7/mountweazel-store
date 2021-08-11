@@ -1,8 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
 import { postRemoveFromCart, postToCart } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
@@ -71,7 +70,15 @@ class Cart extends Component {
             return a + (i.itemData.price * i.quantity);
         }, 0);
 
+        let totalItems = this.props.cart.reduce(function (a, i) {
+            let current = a + i.quantity;
+            console.log("current ", current, a, cartData, i.itemData.price);
+            return a + i.quantity;
+        }, 0);
+
         console.log("total ", totalPrice)
+
+        console.log("total ", totalItems);
 
         console.log("cartData ", cartData)
         console.log("cart ", this.props.cart);
@@ -99,9 +106,11 @@ class Cart extends Component {
                         <tbody>{directory}</tbody>
                     </Table>
 
-                    <h2>Total: </h2>
-                    <h2>{(totalPrice).toFixed(2)}</h2>
+                    <h2>
+                        Subtotal: {totalPrice.toFixed(2)} ({totalItems} items)
+                    </h2>
                 </div>
+                <div class="row"><Button>Proceed to Checkout</Button></div>
             </div>
         );
     }

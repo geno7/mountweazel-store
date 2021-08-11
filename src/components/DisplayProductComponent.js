@@ -6,7 +6,6 @@ import {
     Button,
     Input,
     Label,
-    Col,
     Row,
 } from "reactstrap";
 import { Link } from "react-router-dom";
