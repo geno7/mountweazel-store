@@ -7,7 +7,7 @@ export const fetchProducts = () => (dispatch) => {
     dispatch(productsLoading());
     console.log(`the baseUrl variable is ${baseUrl}`)
 
-    return fetch(baseUrl + "products")
+    return fetch('https://mountweazel-store-db.herokuapp.com/' + "products")
         .then(
             (response) => {
                 if (response.ok) {
