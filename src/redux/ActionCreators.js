@@ -1,8 +1,11 @@
 import * as ActionTypes from "./ActionTypes";
 import { baseUrl } from "../shared/baseUrl";
 
+console.log(baseUrl)
+
 export const fetchProducts = () => (dispatch) => {
     dispatch(productsLoading());
+    console.log(`the baseUrl variable is ${baseUrl}`)
 
     return fetch(baseUrl + "products")
         .then(

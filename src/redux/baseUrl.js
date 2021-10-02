@@ -1,1 +1,1 @@
-export const baseUrl = "http://localhost:3002/";
+export const baseUrl = "https://mountweazel-store-db.herokuapp.com/";
