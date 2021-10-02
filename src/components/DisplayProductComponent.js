@@ -9,7 +9,7 @@ import {
     Row,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Control, Form, Errors } from "react-redux-form";
+import { Form } from "react-redux-form";
 import { Loading } from "./LoadingComponent";
 import { connect } from "react-redux";
 import { actions } from "react-redux-form";

@@ -48,40 +48,42 @@ class Main extends Component {
         return (
             <>
                 <Header />
-                <Switch>
-                    {/* route nav paths */}
-                    <Route path="/home" component={Home} />
-                    <Route
-                        exact
-                        path="/category/:category"
-                        render={(props) => (
-                            <ProductCards
-                                products={this.props.products.products.filter(
-                                    (product) =>
-                                        product.category ===
-                                        props.match.params.category
-                                )}
-                                {...props}
-                                isLoading={this.props.products.isLoading}
-                                errMess={this.props.products.errMess}
-                            />
-                        )}
-                    />
-                    {/* route path for individual product pages */}
-                    <Route
-                        path="/products/:productId"
-                        component={ProductWithId}
-                    />
-                    <Route
-                        path="/cart"
-                        render={(props) => (
-                            <Cart products={this.props.products.products} />
-                        )}
-                    />
 
-                    {/* else redirect to home page */}
-                    <Redirect to="/home"></Redirect>
-                </Switch>
+                <div class="accomodate-footer">
+                    <Switch>
+                        {/* route nav paths */}
+                        <Route path="/home" component={Home} />
+                        <Route
+                            exact
+                            path="/category/:category"
+                            render={(props) => (
+                                <ProductCards
+                                    products={this.props.products.products.filter(
+                                        (product) =>
+                                            product.category ===
+                                            props.match.params.category
+                                    )}
+                                    {...props}
+                                    isLoading={this.props.products.isLoading}
+                                    errMess={this.props.products.errMess}
+                                />
+                            )}
+                        />
+                        {/* route path for individual product pages */}
+                        <Route
+                            path="/products/:productId"
+                            component={ProductWithId}
+                        />
+                        <Route
+                            path="/cart"
+                            render={(props) => (
+                                <Cart products={this.props.products.products} />
+                            )}
+                        />
+                        {/* else redirect to home page */}
+                        <Redirect to="/home"></Redirect>
+                    </Switch>
+                </div>
                 <Footer />
             </>
         );

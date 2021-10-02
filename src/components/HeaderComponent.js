@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Card, CardImg, CardText, CardTitle, CardBody } from "reactstrap";
+import { Nav, Navbar, NavbarToggler, Collapse, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux"
-import { findRenderedComponentWithType } from "react-dom/test-utils";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
     return {

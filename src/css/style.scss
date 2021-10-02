@@ -42,8 +42,13 @@ h1, h2, h3, .card-body>.card-title {
 }
 
 .site-footer {
-    background-image: linear-gradient(#CEC8FF, $pal-white);
-    padding: 20px 0;
+    background-color: $pal-colorA;
+    padding: 10px 0;
+}
+
+//padding so that footer doesnt cover anything
+.accomodate-footer {
+ padding-bottom: 50px;
 }
 
 .center-navbar {

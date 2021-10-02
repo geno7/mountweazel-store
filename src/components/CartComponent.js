@@ -42,10 +42,6 @@ function RenderCartItem({ product, cart, postRemoveFromCart, postToCart }) {
 //render cart items as list
 class Cart extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         //take products array and make a new array from it with only the products that match the cart array 
         //const cartData = this.props.products.products.filter((product) => this.props.cart.find( ({id}) => id === product.id))
@@ -101,16 +97,22 @@ class Cart extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <h1>Cart</h1>
-                    <Table>
-                        <tbody>{directory}</tbody>
-                    </Table>
+                    <div class="col-md-6 col-sm-12">
+                        <h1>Cart</h1>
+                        <Table>
+                            <tbody>{directory}</tbody>
+                        </Table>
+                    </div>
 
-                    <h2>
-                        Subtotal: {totalPrice.toFixed(2)} ({totalItems} items)
-                    </h2>
+                    <div class="col-md-6 col-sm-12">
+                        <h2>
+                            Subtotal: {totalPrice.toFixed(2)} ({totalItems} items)
+                        </h2>
+                        <div class="row">
+                            <Button>Proceed to Checkout</Button>
+                        </div>
+                    </div>
                 </div>
-                <div class="row"><Button>Proceed to Checkout</Button></div>
             </div>
         );
     }

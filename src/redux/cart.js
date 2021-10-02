@@ -25,7 +25,7 @@ export const Cart = (state = [], action) => {
                 console.log("newQuantity ", newQuantity)
 
                 //set existing object to new quantity value
-                objIndex = state.findIndex((obj) => obj == sameSize);
+                objIndex = state.findIndex((obj) => obj === sameSize);
                 console.log("objIndex ",objIndex)
                 state[objIndex].quantity = +newQuantity
 
@@ -50,15 +50,20 @@ export const Cart = (state = [], action) => {
                 console.log("newQuantity ", newQuantity)
 
                 //change quantity of found obj
-                objIndex = state.findIndex((obj) => obj == sameSize);
+                objIndex = state.findIndex((obj) => obj === sameSize);
                 state[objIndex].quantity = +newQuantity
 
-                if (state[objIndex].quantity === 0) { //if there isnt any more of an object, filter it out of the cart
-                    return state.filter((cart) => cart.itemData !== action.payload);;
+                if (state[objIndex].quantity === 0) {
+                    //if there isnt any more of an object, filter it out of the cart
+                    console.log("no more of this list item ", state[objIndex]); //debug
+                    console.log("itemdata ", found.itemData); //debug
+                    console.log("action payload ", action.payload); //debug
+                    return state.filter((cart) => cart.itemData !== action.payload.itemData);
                 }
                 
                 return [...state];
             }
+        break;
 
         default:
             return state;
