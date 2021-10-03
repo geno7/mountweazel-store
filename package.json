@@ -1,4 +1,5 @@
 {
+  "homepage": "http://geno7.github.io/mountweazel-store",
   "name": "mountweazel-store",
   "version": "0.1.0",
   "private": true,
@@ -26,6 +27,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
