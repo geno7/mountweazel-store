@@ -52,7 +52,7 @@ class PurchaseForm extends Component {
     handleSubmit(values) {
         console.log("Current state is: " + JSON.stringify(this.state));
         console.log("Current values is: " + JSON.stringify(values));
-        alert("Current State is: " + JSON.stringify(this.state));
+        //alert("Current State is: " + JSON.stringify(this.state));
         console.log("sizeSelect: " + this.state.sizeSelect)
         console.log("quantitySelect: " + this.state.quantitySelect);
         this.props.postToCart(
